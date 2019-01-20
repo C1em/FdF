@@ -6,7 +6,7 @@
 #    By: aljacque <aljacque@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/20 18:29:57 by aljacque          #+#    #+#              #
-#    Updated: 2019/01/20 19:44:34 by aljacque         ###   ########.fr        #
+#    Updated: 2019/01/20 19:50:30 by aljacque         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ WHITE       = \033[1;37m
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME):
 	@make -C $(LIB)
 	@gcc -o $(NAME) $(LIBA) $(SRC) $(FLAGS) $(FLAGSLIBX)
 	@make clean
