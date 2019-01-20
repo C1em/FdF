@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   new_matrice.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: coremart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/09 12:44:19 by coremart          #+#    #+#             */
-/*   Updated: 2019/01/20 16:31:17 by coremart         ###   ########.fr       */
+/*   Created: 2019/01/20 14:17:15 by coremart          #+#    #+#             */
+/*   Updated: 2019/01/20 14:17:18 by coremart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_atoi(const char *str)
-{
-	int i;
-	int sign;
-	int res;
+#include "FdF.h"
+#include "libft/libft.h"
+#include <stdlib.h>
 
-	i = 0;
-	sign = 1;
-	res = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		i++;
-	if (str[i] == '-' || str[i] == '+')
-		if (str[i++] == '-')
-			sign = -1;
-	while (str[i] >= '0' && str[i] <= '9')
-		res = res * 10 + (int)(str[i++] - '0');
-	return (res * sign);
+t_matrice   *new_matrice(int *first_line, size_t len)
+{
+     t_matrice *new;
+
+     if (!(new = (t_matrice*)malloc(sizeof(t_matrice))))
+        return (NULL);
+     new->line = ft_memdup(first_line, len * 4);
+     new->len = len;
+     new->y = 0;
+     new->next = NULL;
+     return (new);
 }

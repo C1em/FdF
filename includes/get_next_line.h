@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: coremart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/09 12:44:19 by coremart          #+#    #+#             */
-/*   Updated: 2019/01/20 16:31:17 by coremart         ###   ########.fr       */
+/*   Created: 2018/11/16 17:22:09 by coremart          #+#    #+#             */
+/*   Updated: 2018/12/04 13:14:53 by coremart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_atoi(const char *str)
-{
-	int i;
-	int sign;
-	int res;
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-	i = 0;
-	sign = 1;
-	res = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		i++;
-	if (str[i] == '-' || str[i] == '+')
-		if (str[i++] == '-')
-			sign = -1;
-	while (str[i] >= '0' && str[i] <= '9')
-		res = res * 10 + (int)(str[i++] - '0');
-	return (res * sign);
-}
+# define BUFF_SIZE 3
+
+typedef struct	s_fd
+{
+	char		*content;
+	int			fd;
+	struct s_fd	*next;
+}				t_fd;
+
+int				get_next_line(const int fd, char **line);
+
+#endif

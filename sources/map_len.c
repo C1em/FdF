@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   map_len.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: coremart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/09 12:44:19 by coremart          #+#    #+#             */
-/*   Updated: 2019/01/20 16:31:17 by coremart         ###   ########.fr       */
+/*   Created: 2019/01/20 16:05:17 by coremart          #+#    #+#             */
+/*   Updated: 2019/01/20 16:05:18 by coremart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_atoi(const char *str)
-{
-	int i;
-	int sign;
-	int res;
+#include "libft/libft.h"
 
-	i = 0;
-	sign = 1;
-	res = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		i++;
-	if (str[i] == '-' || str[i] == '+')
-		if (str[i++] == '-')
-			sign = -1;
-	while (str[i] >= '0' && str[i] <= '9')
-		res = res * 10 + (int)(str[i++] - '0');
-	return (res * sign);
+size_t map_len(char *line)
+{
+    int i;
+    size_t res;
+
+    i = 0;
+    res = 0;
+    while (line[i + 1])
+    {
+        if (ft_isdigit((int)line[i]) && !ft_isdigit((int)line[i + 1]))
+            res++;
+        i++;
+    }
+    if (ft_isdigit((int)line[i]))
+        res++;
+    return (res);
 }
