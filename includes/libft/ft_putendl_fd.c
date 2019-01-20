@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_matrice.c                                      :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: coremart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/20 14:17:15 by coremart          #+#    #+#             */
-/*   Updated: 2019/01/20 14:17:18 by coremart         ###   ########.fr       */
+/*   Created: 2018/11/13 16:31:04 by coremart          #+#    #+#             */
+/*   Updated: 2018/11/13 16:33:13 by coremart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/FdF.h"
-#include "../includes/libft/libft.h"
-#include <stdlib.h>
+#include "libft.h"
 
-t_matrice   *new_matrice(int *first_line, size_t len)
+void	ft_putendl_fd(char const *s, int fd)
 {
-     t_matrice *new;
-
-     if (!(new = (t_matrice*)malloc(sizeof(t_matrice))))
-        return (NULL);
-     new->line = ft_memdup(first_line, len * 4);
-     new->len = len;
-     new->y = 0;
-     new->next = NULL;
-     return (new);
+	if (s && fd >= -1)
+	{
+		ft_putstr_fd(s, fd);
+		ft_putchar_fd('\n', fd);
+	}
 }

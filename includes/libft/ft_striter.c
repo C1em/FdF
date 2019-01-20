@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_matrice.c                                      :+:      :+:    :+:   */
+/*   ft_striter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: coremart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/20 14:17:15 by coremart          #+#    #+#             */
-/*   Updated: 2019/01/20 14:17:18 by coremart         ###   ########.fr       */
+/*   Created: 2018/11/12 17:10:39 by coremart          #+#    #+#             */
+/*   Updated: 2018/11/12 19:11:37 by coremart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/FdF.h"
-#include "../includes/libft/libft.h"
-#include <stdlib.h>
-
-t_matrice   *new_matrice(int *first_line, size_t len)
+void	ft_striter(char *s, void (*f)(char*))
 {
-     t_matrice *new;
+	int i;
 
-     if (!(new = (t_matrice*)malloc(sizeof(t_matrice))))
-        return (NULL);
-     new->line = ft_memdup(first_line, len * 4);
-     new->len = len;
-     new->y = 0;
-     new->next = NULL;
-     return (new);
+	i = -1;
+	if (s && f)
+	{
+		while (s[++i])
+			f(&s[i]);
+	}
 }

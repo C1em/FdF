@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
+#include "../includes/libft/libft.h"
 
 size_t map_len(char *line)
 {

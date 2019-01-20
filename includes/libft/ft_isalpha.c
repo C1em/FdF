@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_matrice.c                                      :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: coremart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/20 14:17:15 by coremart          #+#    #+#             */
-/*   Updated: 2019/01/20 14:17:18 by coremart         ###   ########.fr       */
+/*   Created: 2018/11/09 13:08:14 by coremart          #+#    #+#             */
+/*   Updated: 2018/11/16 12:26:46 by coremart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/FdF.h"
-#include "../includes/libft/libft.h"
-#include <stdlib.h>
-
-t_matrice   *new_matrice(int *first_line, size_t len)
+int		ft_isalpha(int c)
 {
-     t_matrice *new;
-
-     if (!(new = (t_matrice*)malloc(sizeof(t_matrice))))
-        return (NULL);
-     new->line = ft_memdup(first_line, len * 4);
-     new->len = len;
-     new->y = 0;
-     new->next = NULL;
-     return (new);
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+		return (1);
+	return (0);
 }

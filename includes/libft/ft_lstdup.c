@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_matrice.c                                      :+:      :+:    :+:   */
+/*   ft_lstdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: coremart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/20 14:17:15 by coremart          #+#    #+#             */
-/*   Updated: 2019/01/20 14:17:18 by coremart         ###   ########.fr       */
+/*   Created: 2018/11/14 17:35:54 by coremart          #+#    #+#             */
+/*   Updated: 2018/11/16 14:01:28 by coremart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/FdF.h"
-#include "../includes/libft/libft.h"
-#include <stdlib.h>
+#include "libft.h"
 
-t_matrice   *new_matrice(int *first_line, size_t len)
+t_list	*ft_lstdup(t_list *src)
 {
-     t_matrice *new;
+	t_list *dst;
+	t_list *tmp;
 
-     if (!(new = (t_matrice*)malloc(sizeof(t_matrice))))
-        return (NULL);
-     new->line = ft_memdup(first_line, len * 4);
-     new->len = len;
-     new->y = 0;
-     new->next = NULL;
-     return (new);
+	if (!(src))
+		return (NULL);
+	if (!(dst = ft_lstnew(src->content, src->content_size)))
+		return (NULL);
+	tmp = dst;
+	src = src->next;
+	while (src)
+	{
+		if (!(tmp->next = ft_lstnew(src->content, src->content_size)))
+			return (NULL);
+		tmp = tmp->next;
+		src = src->next;
+	}
+	tmp = NULL;
+	return (dst);
 }

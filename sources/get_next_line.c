@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include "libft/libft.h"
+#include "../includes/get_next_line.h"
+#include "../includes/libft/libft.h"
 #include <sys/types.h>
 #include <sys/uio.h>
 #include <unistd.h>

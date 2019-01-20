@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_matrice.c                                      :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: coremart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/20 14:17:15 by coremart          #+#    #+#             */
-/*   Updated: 2019/01/20 14:17:18 by coremart         ###   ########.fr       */
+/*   Created: 2018/11/13 16:33:55 by coremart          #+#    #+#             */
+/*   Updated: 2018/11/16 12:41:41 by coremart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/FdF.h"
-#include "../includes/libft/libft.h"
-#include <stdlib.h>
+#include "libft.h"
 
-t_matrice   *new_matrice(int *first_line, size_t len)
+void	ft_putnbr_fd(int n, int fd)
 {
-     t_matrice *new;
-
-     if (!(new = (t_matrice*)malloc(sizeof(t_matrice))))
-        return (NULL);
-     new->line = ft_memdup(first_line, len * 4);
-     new->len = len;
-     new->y = 0;
-     new->next = NULL;
-     return (new);
+	if (n > 9)
+		ft_putnbr_fd(n / 10, fd);
+	if (n >= 0)
+		ft_putchar_fd((n % 10) + '0', fd);
+	else
+	{
+		ft_putchar_fd('-', fd);
+		if (n == -2147483648)
+		{
+			ft_putstr_fd("2147483648", fd);
+			return ;
+		}
+		ft_putnbr_fd(-n, fd);
+	}
 }

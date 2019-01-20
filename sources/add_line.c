@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "FdF.h"
-#include "libft/libft.h"
+#include "../includes/FdF.h"
+#include "../includes/libft/libft.h"
 #include <stdlib.h>
 
 void    add_line(t_matrice *last_line, int *line, int len)

@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_matrice.c                                      :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: coremart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/20 14:17:15 by coremart          #+#    #+#             */
-/*   Updated: 2019/01/20 14:17:18 by coremart         ###   ########.fr       */
+/*   Created: 2018/11/10 17:13:16 by coremart          #+#    #+#             */
+/*   Updated: 2018/11/16 13:45:38 by coremart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/FdF.h"
-#include "../includes/libft/libft.h"
-#include <stdlib.h>
+#include "libft.h"
 
-t_matrice   *new_matrice(int *first_line, size_t len)
+int		ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-     t_matrice *new;
+	size_t i;
 
-     if (!(new = (t_matrice*)malloc(sizeof(t_matrice))))
-        return (NULL);
-     new->line = ft_memdup(first_line, len * 4);
-     new->len = len;
-     new->y = 0;
-     new->next = NULL;
-     return (new);
+	i = 0;
+	if (n == 0)
+		return (0);
+	while (*((unsigned char*)s1 + i) == *((unsigned char*)s2 + i) && i < n - 1)
+		i++;
+	return (*((unsigned char*)s1 + i) - *((unsigned char*)s2 + i));
 }

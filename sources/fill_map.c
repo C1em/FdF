@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "get_next_line.h"
-#include "FdF.h"
+#include "../includes/libft/libft.h"
+#include "../includes/get_next_line.h"
+#include "../includes/FdF.h"
 #include <fcntl.h>
 #include <stdlib.h>
 

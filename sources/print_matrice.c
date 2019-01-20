@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "FdF.h"
-#include "libft/libft.h"
+#include "../includes/FdF.h"
+#include "../includes/libft/libft.h"
 
 void    print_matrice(t_matrice *matrice)
 {

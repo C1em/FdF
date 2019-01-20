@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_matrice.c                                      :+:      :+:    :+:   */
+/*   print_matrice.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: coremart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/20 14:17:15 by coremart          #+#    #+#             */
-/*   Updated: 2019/01/20 14:17:18 by coremart         ###   ########.fr       */
+/*   Created: 2019/01/20 15:31:53 by coremart          #+#    #+#             */
+/*   Updated: 2019/01/20 15:31:54 by coremart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/FdF.h"
-#include "../includes/libft/libft.h"
-#include <stdlib.h>
+#include "libft/libft.h"
 
-t_matrice   *new_matrice(int *first_line, size_t len)
+void    print_matrice(t_matrice *matrice)
 {
-     t_matrice *new;
+    size_t i;
 
-     if (!(new = (t_matrice*)malloc(sizeof(t_matrice))))
-        return (NULL);
-     new->line = ft_memdup(first_line, len * 4);
-     new->len = len;
-     new->y = 0;
-     new->next = NULL;
-     return (new);
+    i = 0;
+    while (matrice)
+    {
+        i = 0;
+        while (i < matrice->len)
+        {
+            ft_putnbr(matrice->line[i++]);
+            ft_putchar(' ');
+        }
+        ft_putchar('\n');
+        matrice = matrice->next;
+    }
 }

@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_matrice.c                                      :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: coremart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/20 14:17:15 by coremart          #+#    #+#             */
-/*   Updated: 2019/01/20 14:17:18 by coremart         ###   ########.fr       */
+/*   Created: 2018/11/09 11:01:54 by coremart          #+#    #+#             */
+/*   Updated: 2018/11/16 13:06:19 by coremart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/FdF.h"
-#include "../includes/libft/libft.h"
-#include <stdlib.h>
+#include <string.h>
 
-t_matrice   *new_matrice(int *first_line, size_t len)
+char	*ft_strstr(const char *haystack, const char *needle)
 {
-     t_matrice *new;
+	int i;
+	int j;
 
-     if (!(new = (t_matrice*)malloc(sizeof(t_matrice))))
-        return (NULL);
-     new->line = ft_memdup(first_line, len * 4);
-     new->len = len;
-     new->y = 0;
-     new->next = NULL;
-     return (new);
+	i = 0;
+	j = 0;
+	if (needle[j] == '\0')
+		return ((char*)haystack);
+	while (haystack[i])
+	{
+		while (haystack[i + j] == needle[j] && haystack[i + j])
+		{
+			j++;
+			if (needle[j] == '\0')
+				return ((char*)&haystack[i]);
+		}
+		j = 0;
+		i++;
+	}
+	return (NULL);
 }

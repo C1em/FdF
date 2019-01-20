@@ -1,25 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: coremart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/19 00:26:43 by coremart          #+#    #+#             */
-/*   Updated: 2019/01/19 00:53:12 by coremart         ###   ########.fr       */
+/*   Created: 2018/11/13 14:56:02 by coremart          #+#    #+#             */
+/*   Updated: 2018/11/16 13:57:01 by coremart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/FdF.h"
+#include "libft.h"
 
-int main(int ac, char **av)
+char	*ft_itoa(int n)
 {
-	t_matrice *matrice;
+	char	*str;
+	int		sign;
+	int		i;
+	int		size;
 
-	if (ac == 2)
+	sign = 0;
+	i = 0;
+	if (n < 0)
+		sign = 1;
+	size = ft_count_digit(n) + sign;
+	if (!(str = ft_strnew(size)))
+		return (NULL);
+	if (sign)
 	{
-		matrice = fill_map(av[1]);
-		print_matrice(matrice);
+		str[i++] = '-';
+		if (n == -2147483648)
+			return (ft_strcpy(str, "-2147483648"));
+		n *= -1;
 	}
-	return (0);
+	while (size - sign)
+	{
+		str[--size] = (char)(n % 10 + '0');
+		n /= 10;
+	}
+	return (str);
 }

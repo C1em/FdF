@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_matrice.c                                      :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: coremart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/20 14:17:15 by coremart          #+#    #+#             */
-/*   Updated: 2019/01/20 14:17:18 by coremart         ###   ########.fr       */
+/*   Created: 2018/11/09 11:23:25 by coremart          #+#    #+#             */
+/*   Updated: 2018/11/16 13:05:27 by coremart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/FdF.h"
-#include "../includes/libft/libft.h"
-#include <stdlib.h>
+#include <string.h>
 
-t_matrice   *new_matrice(int *first_line, size_t len)
+char	*ft_strnstr(const char *h, const char *n, size_t len)
 {
-     t_matrice *new;
+	size_t	i;
+	int		j;
 
-     if (!(new = (t_matrice*)malloc(sizeof(t_matrice))))
-        return (NULL);
-     new->line = ft_memdup(first_line, len * 4);
-     new->len = len;
-     new->y = 0;
-     new->next = NULL;
-     return (new);
+	i = 0;
+	j = 0;
+	if (n[j] == '\0')
+		return ((char*)h);
+	while (h[i] && i < len)
+	{
+		while (h[i + j] == n[j] && h[i + j] && i + j < len)
+		{
+			j++;
+			if (n[j] == '\0')
+				return ((char *)&h[i]);
+		}
+		j = 0;
+		i++;
+	}
+	return (NULL);
 }

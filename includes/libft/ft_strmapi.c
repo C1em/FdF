@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_matrice.c                                      :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: coremart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/20 14:17:15 by coremart          #+#    #+#             */
-/*   Updated: 2019/01/20 14:17:18 by coremart         ###   ########.fr       */
+/*   Created: 2018/11/12 17:38:26 by coremart          #+#    #+#             */
+/*   Updated: 2018/11/12 20:21:01 by coremart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/FdF.h"
-#include "../includes/libft/libft.h"
 #include <stdlib.h>
+#include "libft.h"
 
-t_matrice   *new_matrice(int *first_line, size_t len)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-     t_matrice *new;
+	unsigned int	i;
+	char			*str;
 
-     if (!(new = (t_matrice*)malloc(sizeof(t_matrice))))
-        return (NULL);
-     new->line = ft_memdup(first_line, len * 4);
-     new->len = len;
-     new->y = 0;
-     new->next = NULL;
-     return (new);
+	i = 0;
+	if (s)
+	{
+		if (!(str = (char*)malloc(ft_strlen(s) + 1)))
+			return (NULL);
+		while (s[i])
+		{
+			str[i] = f(i, s[i]);
+			i++;
+		}
+		str[i] = 0;
+		return (str);
+	}
+	return (NULL);
 }

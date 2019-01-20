@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "libft/libft.h"
-#include "FdF.h"
+#include "../includes/libft/libft.h"
+#include "../includes/FdF.h"
 
 int  *convert_to_int_tab(char *line)
 {

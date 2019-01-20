@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_matrice.c                                      :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: coremart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/20 14:17:15 by coremart          #+#    #+#             */
-/*   Updated: 2019/01/20 14:17:18 by coremart         ###   ########.fr       */
+/*   Created: 2018/11/12 18:10:52 by coremart          #+#    #+#             */
+/*   Updated: 2018/11/16 13:07:00 by coremart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/FdF.h"
-#include "../includes/libft/libft.h"
 #include <stdlib.h>
+#include <string.h>
 
-t_matrice   *new_matrice(int *first_line, size_t len)
+char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-     t_matrice *new;
+	char	*res;
+	size_t	i;
 
-     if (!(new = (t_matrice*)malloc(sizeof(t_matrice))))
-        return (NULL);
-     new->line = ft_memdup(first_line, len * 4);
-     new->len = len;
-     new->y = 0;
-     new->next = NULL;
-     return (new);
+	i = 0;
+	if (s)
+	{
+		if (!(res = (char*)malloc(len + 1)))
+			return (NULL);
+		while (i < len)
+		{
+			res[i] = s[start + i];
+			i++;
+		}
+		res[i] = 0;
+		return (res);
+	}
+	return (NULL);
 }
