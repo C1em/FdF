@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: coremart <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: coremart <coremart@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/08 11:46:04 by coremart          #+#    #+#              #
-#    Updated: 2018/11/16 16:18:39 by coremart         ###   ########.fr        #
+#    Updated: 2019/01/20 18:51:50 by aljacque         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,13 +85,13 @@ HEADER = libft.h
 all: $(NAME)
 
 $(NAME):
-	gcc $(CFLAGS) -c $(SRCS) -I $(HEADER)
-	ar rcs $(NAME) $(OBJ)
+	@gcc $(CFLAGS) -c $(SRCS) -I $(HEADER)
+	@ar rcs $(NAME) $(OBJ)
 
 clean:
-	rm -f $(OBJ)
+	@rm -f $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
