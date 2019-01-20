@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coremart <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: coremart <coremart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 00:26:43 by coremart          #+#    #+#             */
-/*   Updated: 2019/01/19 00:53:12 by coremart         ###   ########.fr       */
+/*   Updated: 2019/01/20 19:47:07 by aljacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/FdF.h"
+#include "../includes/fdf.h"
 
 int main(int ac, char **av)
 {

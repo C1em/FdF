@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   convert_to_int_tab.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coremart <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: coremart <coremart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/20 14:40:58 by coremart          #+#    #+#             */
-/*   Updated: 2019/01/20 14:40:59 by coremart         ###   ########.fr       */
+/*   Updated: 2019/01/20 19:46:53 by aljacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "../includes/libft/libft.h"
-#include "../includes/FdF.h"
+#include "../libft/libft.h"
+#include "../includes/fdf.h"
 
 int  *convert_to_int_tab(char *line)
 {

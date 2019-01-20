@@ -6,7 +6,7 @@
 #    By: aljacque <aljacque@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/20 18:29:57 by aljacque          #+#    #+#              #
-#    Updated: 2019/01/20 18:54:57 by aljacque         ###   ########.fr        #
+#    Updated: 2019/01/20 19:44:34 by aljacque         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,11 +17,11 @@ FLAGSLIBX = -lmlx -framework OpenGL -framework AppKit
 
 ### INCLUDES ###
 LIB = libft/
-INC = includes/fdf.h
+INC = includes/*.h
 LIBA = libft/libft.a
 
 ### SOURCES ###
-SRC = sources/main.c
+SRC = sources/*.c
 
 ### OBJECTS ####
 OBJ = $(SRC:.c=.o)

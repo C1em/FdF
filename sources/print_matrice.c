@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   print_matrice.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coremart <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: coremart <coremart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/20 15:31:53 by coremart          #+#    #+#             */
-/*   Updated: 2019/01/20 15:31:54 by coremart         ###   ########.fr       */
+/*   Updated: 2019/01/20 19:47:16 by aljacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/FdF.h"
-#include "../includes/libft/libft.h"
+#include "../includes/fdf.h"
+#include "../libft/libft.h"
 
 void    print_matrice(t_matrice *matrice)
 {

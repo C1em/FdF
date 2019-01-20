@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   fill_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coremart <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: coremart <coremart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 00:29:21 by coremart          #+#    #+#             */
-/*   Updated: 2019/01/19 01:17:14 by coremart         ###   ########.fr       */
+/*   Updated: 2019/01/20 19:46:59 by aljacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft/libft.h"
+#include "../libft/libft.h"
 #include "../includes/get_next_line.h"
-#include "../includes/FdF.h"
+#include "../includes/fdf.h"
 #include <fcntl.h>
 #include <stdlib.h>
 

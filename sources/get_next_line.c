@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coremart <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: coremart <coremart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 17:20:49 by coremart          #+#    #+#             */
-/*   Updated: 2018/12/04 14:07:19 by coremart         ###   ########.fr       */
+/*   Updated: 2019/01/20 19:45:50 by aljacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/get_next_line.h"
-#include "../includes/libft/libft.h"
+#include "../libft/libft.h"
 #include <sys/types.h>
 #include <sys/uio.h>
 #include <unistd.h>

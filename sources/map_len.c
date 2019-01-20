@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map_len.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coremart <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: coremart <coremart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/20 16:05:17 by coremart          #+#    #+#             */
-/*   Updated: 2019/01/20 16:05:18 by coremart         ###   ########.fr       */
+/*   Updated: 2019/01/20 19:45:57 by aljacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft/libft.h"
+#include "../libft/libft.h"
 
 size_t map_len(char *line)
 {

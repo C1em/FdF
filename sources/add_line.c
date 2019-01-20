@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   add_line.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coremart <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: coremart <coremart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/20 14:25:39 by coremart          #+#    #+#             */
-/*   Updated: 2019/01/20 14:25:40 by coremart         ###   ########.fr       */
+/*   Updated: 2019/01/20 19:46:55 by aljacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/FdF.h"
-#include "../includes/libft/libft.h"
+#include "../includes/fdf.h"
+#include "../libft/libft.h"
 #include <stdlib.h>
 
 void    add_line(t_matrice *last_line, int *line, int len)
 {
     t_matrice *new_line;
-    
+
     if (!(new_line = (t_matrice*)malloc(sizeof(t_matrice))))
         return ;
     new_line->line = ft_memdup(line, len * 4);
