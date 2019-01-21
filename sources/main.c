@@ -6,7 +6,7 @@
 /*   By: coremart <coremart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 00:26:43 by coremart          #+#    #+#             */
-/*   Updated: 2019/01/20 19:47:07 by aljacque         ###   ########.fr       */
+/*   Updated: 2019/01/20 20:19:24 by aljacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@ int main(int ac, char **av)
 		matrice = fill_map(av[1]);
 		print_matrice(matrice);
 	}
+	ft_open_window();
 	return (0);
 }
