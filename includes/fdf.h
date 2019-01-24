@@ -6,7 +6,7 @@
 /*   By: coremart <coremart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 00:48:33 by coremart          #+#    #+#             */
-/*   Updated: 2019/01/24 14:37:50 by coremart         ###   ########.fr       */
+/*   Updated: 2019/01/24 16:45:28 by aljacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,6 @@ int         	key_events(int keycode);
 int         	ft_open_window(void);
 t_vector_tab    *convert_to_vector(t_matrice *matrix);
 t_vector    	**rot_matrix(t_vector_tab *tab, const float teta, const float beta);
+void	print_menu(t_data *data);
 
 #endif
