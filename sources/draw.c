@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coremart <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: coremart <coremart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 15:31:05 by coremart          #+#    #+#             */
-/*   Updated: 2019/01/24 15:31:08 by coremart         ###   ########.fr       */
+/*   Updated: 2019/01/24 18:40:27 by aljacque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 static void    put_pixel(int x, int y, int color, char **img_str)
 {
     unsigned int pixel;
-    
+
     if (x >= LENGHT || y >= HEIGHT)
         exit (0);
     pixel = (y * LENGHT + x) * 4;
@@ -34,15 +34,15 @@ static void    draw_line(t_points *points, int color, char *img_str)
     int p;
     int x;
     int y;
- 
+
 	dx = points->x2 - points->x1;
 	dy = points->y2 - points->y1;
- 
+
 	x = points->x1;
 	y = points->y1;
- 
+
 	p = 2 * dy - dx;
- 
+
 	while( x < points->x2)
 	{
         put_pixel(x, y, color, &img_str);
@@ -89,5 +89,6 @@ void    draw(t_data *data)
         i++;
     }
     mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img_info->img_ptr, 0, 0);
+    print_menu(data);
     mlx_hook(data->win_ptr, 2, 0, &key_press, data);
 }
