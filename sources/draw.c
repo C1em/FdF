@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #include <mlx.h>
 
+#include <stdio.h>
 
 static void    put_pixel(int x, int y, int color, char **img_str)
 {
@@ -71,6 +72,7 @@ static void    add_points(t_vector_tab *tab, t_data *data, int i, int j)
     {
         data->points->x2 = tab->tab[i + 1][j].x + LENGHT / 2;
         data->points->y2 = tab->tab[i + 1][j].y + HEIGHT / 2;
+  //      printf("x1 : %d\nx2 : %d\ny1 : %d\ny2 : %d\n\n", data->points->x1, data->points->x2, data->points->y1, data->points->y2);
         draw_line(data->points, 0xFFFFFF, data->img_info->img_str);
     }
 }
