@@ -14,6 +14,8 @@
 #include <mlx.h>
 #include <stdlib.h>
 
+#include <math.h>
+
 t_data	*window_init(void)
 {
 	t_data	*data;
@@ -21,6 +23,8 @@ t_data	*window_init(void)
 	if (!(data = (t_data*)malloc(sizeof(t_data))))
         return (0);
     if (!(data->img_info = (t_img_info*)malloc(sizeof(t_img_info))))
+        return (0);
+    if (!(data->points = (t_points*)malloc(sizeof(t_points))))
         return (0);
     data->mlx_ptr = mlx_init();
     data->win_ptr = mlx_new_window(data->mlx_ptr, LENGHT, HEIGHT, "FdF");
@@ -33,14 +37,15 @@ t_data	*window_init(void)
 int		main(int ac, char **av)
 {
 	t_matrice *matrix;
-	t_vector_tab *tab;
 	t_data *data;
 
 	if (ac == 2)
 	{
 		data = window_init();
 		matrix = fill_map(av[1]);
-		tab = convert_to_vector(matrix);
+		data->tab = convert_to_vector(matrix);
+		rot_matrix(data->tab, PI / 2, PI / 2);
+		draw(data);
 		mlx_loop(data->mlx_ptr);
 	}
 	return (0);

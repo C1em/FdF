@@ -6,7 +6,7 @@
 /*   By: coremart <coremart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 00:48:33 by coremart          #+#    #+#             */
-/*   Updated: 2019/01/24 16:45:28 by aljacque         ###   ########.fr       */
+/*   Updated: 2019/01/24 14:37:50 by coremart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #define LENGHT 1500
 #define HEIGHT 1000
+#define PI 3.14159265359
 
 #include <string.h>
 
@@ -35,15 +36,6 @@ typedef struct  s_img_info
 	int endian;
 }               t_img_info;
 
-typedef struct  s_data
-{
-	void *mlx_ptr;
-	void *win_ptr;
-	t_img_info *img_info;
-	t_points *points;
-}               t_data;
-
-
 typedef struct  s_vector
 {
 	int x;
@@ -53,9 +45,10 @@ typedef struct  s_vector
 
 typedef struct  s_vector_tab
 {
-	s_vector **tab;
+	t_vector **tab;
 	int nb_lines;
 	int nb_col;
+	int zoom;
 }               t_vector_tab;
 
 typedef struct  s_matrice
@@ -65,12 +58,21 @@ typedef struct  s_matrice
 	struct s_matrice *next;
 }               t_matrice;
 
+typedef struct  s_data
+{
+	void *mlx_ptr;
+	void *win_ptr;
+	t_img_info *img_info;
+	t_points *points;
+	t_vector_tab *tab;
+}               t_data;
 
 t_matrice   	*fill_map(char * path);
 int         	key_events(int keycode);
 int         	ft_open_window(void);
 t_vector_tab    *convert_to_vector(t_matrice *matrix);
-t_vector    	**rot_matrix(t_vector_tab *tab, const float teta, const float beta);
-void	print_menu(t_data *data);
+void			rot_matrix(t_vector_tab *tab, const float teta, const float beta);
+void    		draw(t_data *data);
+int     		key_press(int key, t_data *data);
 
 #endif

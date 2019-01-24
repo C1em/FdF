@@ -13,6 +13,7 @@
 #include "../includes/fdf.h"
 #include <stdlib.h>
 
+
 void    find_mid(t_matrice *matrix, float *mid_x, float *mid_y, int *zoom)
 {
     int y;
@@ -24,7 +25,7 @@ void    find_mid(t_matrice *matrix, float *mid_x, float *mid_y, int *zoom)
         matrix = matrix->next;
         y++;
     }
-    *zoom = ((LENGHT / matrix->len > LENGHT / (y + 1)) ? LENGHT / matrix->len : LENGHT / (y + 1));
+    *zoom = ((LENGHT / (int)matrix->len < HEIGHT / (y + 1)) ? LENGHT / matrix->len : HEIGHT / (y + 1));
     *mid_y = y / 2;
 }
 
@@ -45,15 +46,15 @@ t_vector_tab    *convert_to_vector(t_matrice *matrix)
 {
     float mid_x;
     float mid_y;
-    int zoom;
-    size_t i;
-    int j;
+    size_t j;
+    int i;
     t_vector_tab *vector_tab;
 
-    find_mid(matrix, &mid_x, &mid_y, &zoom);
     if (!(vector_tab = (t_vector_tab*)malloc(sizeof(t_vector_tab))))
         return (NULL);
+    find_mid(matrix, &mid_x, &mid_y, &vector_tab->zoom);
     vector_tab->nb_lines = count_line(matrix);
+    vector_tab->nb_col = matrix->len;
     if (!(vector_tab->tab = (t_vector**)malloc(sizeof(t_vector*) * vector_tab->nb_lines)))
         return (NULL);
     i = 0;
@@ -64,14 +65,13 @@ t_vector_tab    *convert_to_vector(t_matrice *matrix)
             return (NULL);
         while (j < matrix->len)
         {
-            vector_tab->tab[i][j].x = zoom * (j - mid_x);
-            vector_tab->tab[i][j].y = zoom * (i - mid_y);
+            vector_tab->tab[i][j].x = vector_tab->zoom * (j - mid_x);
+            vector_tab->tab[i][j].y = vector_tab->zoom * (i - mid_y);
             vector_tab->tab[i][j].z = matrix->line[j];
             j++;
         }
         matrix = matrix->next;
         i++;
     }
-    vector_tab->nb_col = matrix->len;
     return (vector_tab);
 }

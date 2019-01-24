@@ -24,7 +24,7 @@ static void    rot_vector(t_vector *vector, const float teta, const float beta)
     vector->z = (int)(-tmp_y * sin(beta) + vector->z * cos(beta));
 }
 
-t_vector    **rot_matrix(t_vector_tab *tab, const float teta, const float beta)
+void    rot_matrix(t_vector_tab *tab, const float teta, const float beta)
 {
     int i;
     int j;
