@@ -45,7 +45,7 @@ int		main(int ac, char **av)
 		data = window_init();
 		matrix = fill_map(av[1]);
 		data->tab = convert_to_vector(matrix);
-		rot_matrix(data->tab, - PI / 100, PI / 100);
+		rot_matrix(data->tab, PI / 6, PI / 6);
 		draw(data);
 		mlx_loop(data->mlx_ptr);
 	}

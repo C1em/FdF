@@ -90,5 +90,7 @@ int				ft_min(int a, int b);
 int				ft_strclen(const char *s, char c);
 int				ft_count_digit(int n);
 void			*ft_memdup(const void *src, size_t size);
+void			ft_memswap(void *s1, void *s2, size_t size);
+float			ft_absolute(float nb);
 
 #endif

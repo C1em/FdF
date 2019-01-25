@@ -11,51 +11,85 @@
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+#include "../libft/libft.h"
 #include <stdlib.h>
 #include <mlx.h>
 
 #include <stdio.h>
 
-static void    put_pixel(int x, int y, int color, char **img_str)
+static void    put_pixel(int x, int y, int color, char *img_str)
 {
     unsigned int pixel;
 
-    if (x >= LENGHT || y >= HEIGHT)
-        exit (0);
+    if (x >= LENGHT || y >= HEIGHT || x < 0 || y < 0)
+        return ;
     pixel = (y * LENGHT + x) * 4;
-    img_str[0][pixel] = color;
-    img_str[0][pixel + 1] = color >> 8;
-    img_str[0][pixel + 2] = color >> 16;
+    img_str[pixel] = color;
+    img_str[pixel + 1] = color >> 8;
+    img_str[pixel + 2] = color >> 16;
 }
 
 static void    draw_line(t_points *points, int color, char *img_str)
 {
-    int dx;
-    int dy;
-    int p;
+    int x1;
+    int x2;
+    int y1;
+    int y2;
+    float gradient;
     int x;
-    int y;
+    float interY;
+    int steep;
 
-	dx = points->x2 - points->x1;
-	dy = points->y2 - points->y1;
+    x1 = points->x1;
+    x2 = points->x2;
+    y1 = points->y1;
+    y2 = points->y2;
+    steep = ft_absolute(y2 - y1) > ft_absolute(x2 - x1);
+    if (steep)
+    {
+        ft_memswap(&x1 , &y1, 4);
+        ft_memswap(&x2 , &y2, 4);
+    }
+    if (x1 > x2)
+    {
+        ft_memswap(&x1 ,&x2, 4);
+        ft_memswap(&y1 ,&y2, 4);
+    }
+    if (x2 != x1)
+        gradient = (float)(y2 - y1) / (float)(x2 - x1);
+    else
+        gradient = 1;
+    interY = y1;
+    x = x1;
+    if (steep)
+    {
+        while (x <= x2)
+        {
+            put_pixel((int)interY, x, (int)((float)(unsigned char)color * (1 - (interY - (int)interY)))
+            | (((int)((float)(unsigned char)(color >> 8) * (1 - (interY - (int)interY)))) << 8)
+            | (((int)((float)(unsigned char)(color >>16) * (1 - (interY - (int)interY)))) << 16), img_str);
+            put_pixel((int)interY - 1, x, (int)((float)(unsigned char)color * (interY - (int)interY))
+            | (((int)((float)(unsigned char)(color >> 8) * (interY - (int)interY))) << 8)
+            | (((int)((float)(unsigned char)(color >>16) * (interY - (int)interY))) << 16), img_str);
+            interY += gradient;
+            x++;
+        }
+    }
+    else
+    {
+        while (x <= x2)
+        {
+            put_pixel(x, (int)interY, (int)((float)(unsigned char)color * (1 - (interY - (int)interY)))
+            | (((int)((float)(unsigned char)(color >> 8) * (1 - (interY - (int)interY)))) << 8)
+            | (((int)((float)(unsigned char)(color >>16) * (1 - (interY - (int)interY)))) << 16), img_str);
+            put_pixel(x, (int)interY - 1, (int)((float)(unsigned char)color * (interY - (int)interY))
+            | (((int)((float)(unsigned char)(color >> 8) * (interY - (int)interY))) << 8)
+            | (((int)((float)(unsigned char)(color >>16) * (interY - (int)interY))) << 16), img_str);
+            interY += gradient;
+            x++;
+        }
+    }
 
-	x = points->x1;
-	y = points->y1;
-
-	p = 2 * dy - dx;
-
-	while( x < points->x2)
-	{
-        put_pixel(x, y, color, &img_str);
-		if(p >= 0)
-		{
-			y++;
-			p += 2 * dy - 2 * dx;
-		}
-		else
-			p += 2 * dy;
-		x++;
-	}
 }
 
 static void    add_points(t_vector_tab *tab, t_data *data, int i, int j)
@@ -72,7 +106,6 @@ static void    add_points(t_vector_tab *tab, t_data *data, int i, int j)
     {
         data->points->x2 = tab->tab[i + 1][j].x + LENGHT / 2;
         data->points->y2 = tab->tab[i + 1][j].y + HEIGHT / 2;
-  //      printf("x1 : %d\nx2 : %d\ny1 : %d\ny2 : %d\n\n", data->points->x1, data->points->x2, data->points->y1, data->points->y2);
         draw_line(data->points, 0xFFFFFF, data->img_info->img_str);
     }
 }

@@ -14,30 +14,42 @@
 #include <stdlib.h>
 #include <mlx.h>
 
-int     key_press(int key, t_data *data)
+static void add_to(char axe, int zoom, t_vector_tab *tab)
+{
+    int i;
+    int j;
+
+    i = 0;
+    while (i < tab->nb_lines)
+    {
+        j = 0;
+        while (j < tab->nb_col)
+            if (axe == 'x')
+                tab->tab[i][j++].x += zoom / 4;
+            else
+                tab->tab[i][j++].y += zoom / 4;
+        i++;
+    }
+}
+
+static void key_arrow(int key , t_vector_tab *tab)
+{
+    if (key == 123)
+        add_to('x', -tab->zoom, tab);
+    if (key == 124)
+        add_to('x', tab->zoom, tab);
+    if (key == 125)
+        add_to('y', tab->zoom, tab);
+    if (key == 126)
+        add_to('y', -tab->zoom, tab);
+}
+
+int         key_press(int key, t_data *data)
 {
     if (key == 53)
         exit(0);
-    else if (key == 123)
-    {
-        data->points->x1 -= data->tab->zoom;
-        data->points->x2 -= data->tab->zoom;
-    }
-    else if (key == 124)
-    {
-        data->points->x1 += data->tab->zoom;
-        data->points->x2 += data->tab->zoom;
-    }
-    else if (key == 125)
-    {
-        data->points->y1 += data->tab->zoom;
-        data->points->y2 += data->tab->zoom;
-    }
-    else if (key == 126)
-    {
-        data->points->y1 -= data->tab->zoom;
-        data->points->y2 -= data->tab->zoom;
-    }
+    if (key > 122 && key < 127)
+        key_arrow(key, data->tab);
     else
         return (0);
     mlx_destroy_image(data->mlx_ptr, data->img_info->img_ptr);
