@@ -6,7 +6,7 @@
 #    By: aljacque <aljacque@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/20 18:29:57 by aljacque          #+#    #+#              #
-#    Updated: 2019/01/20 19:50:30 by aljacque         ###   ########.fr        #
+#    Updated: 2019/01/25 23:03:47 by aljacque         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ SRC = sources/*.c
 OBJ = $(SRC:.c=.o)
 
 ### COLORS ###
-NOC         = \033[0m
+RESET       = \033[0m
 BOLD        = \033[1m
 UNDERLINE   = \033[4m
 BLACK       = \033[1;30m
@@ -45,23 +45,24 @@ WHITE       = \033[1;37m
 all: $(NAME)
 
 $(NAME):
+	@sh loading.sh
+	@clear
 	@make -C $(LIB)
 	@gcc -o $(NAME) $(LIBA) $(SRC) $(FLAGS) $(FLAGSLIBX)
-	@make clean
-	@echo "[ $(GREEN)OK$(NOC) ]\tFDF created."
+	@clear
 
 %.o: %.c
 	@gcc  $(FLAGS) -o $@ -c $<
 
 clean:
+	@sh delete.sh
 	@make -C $(LIB) clean
 	@rm -f $(OBJ)
-	@echo "[ $(GREEN)OK$(NOC) ]\tFiles .o deleted."
 
 fclean: clean
+	@sh delete.sh
 	@make -C $(LIB) fclean
 	@rm -f $(NAME)
-	@echo "[ $(GREEN)OK$(NOC) ]\tFDF deleted."
 
 re:
 	@$(MAKE) fclean

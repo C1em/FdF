@@ -6,7 +6,7 @@
 #    By: coremart <coremart@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/08 11:46:04 by coremart          #+#    #+#              #
-#    Updated: 2019/01/20 18:51:50 by aljacque         ###   ########.fr        #
+#    Updated: 2019/01/25 21:58:02 by aljacque         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,7 +78,9 @@ SRCS = ft_strlen.c \
 	   ft_min.c \
 	   ft_strclen.c \
 	   ft_count_digit.c \
-	   ft_memdup.c
+	   ft_memdup.c \
+		 ft_absolute.c \
+		 ft_memswap.c
 OBJ = $(SRCS:.c=.o)
 HEADER = libft.h
 
