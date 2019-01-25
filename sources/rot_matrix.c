@@ -11,9 +11,10 @@
 /* ************************************************************************** */
 
 #include <math.h>
+#include <stdlib.h>
 #include "../includes/fdf.h"
 
-static void    rot_vector(t_vector *vector, const float teta, const float beta)
+static void    rot_vector(t_vector *vector, t_angles *angles)
 {
     float y;
     float x;
@@ -23,22 +24,18 @@ static void    rot_vector(t_vector *vector, const float teta, const float beta)
     x = (float)vector->x;
     z = (float)vector->z;
     
-   vector->y = (int)(cos(-beta) * (x * sin(teta) + y * cos(teta)) + z * sin(-beta));
-   vector->z = (int)(-sin(-beta) * (x * sin(teta) + y * cos(teta)) + z * cos(-beta));
-   vector->x = (int)(x * cos(teta) - y * sin(teta));
+   vector->y = (int)(cos(-angles->beta) * (x * sin(angles->teta) + y * cos(angles->teta)) + z * sin(-angles->beta));
+   vector->z = (int)(-sin(-angles->beta) * (x * sin(angles->teta) + y * cos(angles->teta)) + z * cos(-angles->beta));
+   vector->x = (int)(x * cos(angles->teta) - y * sin(angles->teta));
 }
 
 void    rot_matrix(t_vector_tab *tab, const float teta, const float beta)
 {
-    int i;
-    int j;
+    t_angles *angles;
 
-    i = 0;
-    while(i < tab->nb_lines)
-    {
-        j = 0;
-        while(j < tab->nb_col)
-            rot_vector(&tab->tab[i][j++], teta, beta);
-        i++;
-    } 
+    if (!(angles = (t_angles*)malloc(sizeof(t_angles))))
+        return ;
+        angles->beta = beta;
+        angles->teta = teta;
+    foreach_vec(tab, &rot_vector, angles);
 }

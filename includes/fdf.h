@@ -19,6 +19,19 @@
 
 #include <string.h>
 
+typedef struct s_param
+{
+	int zoom;
+	char axe;
+	int sign_or_key;
+}				t_param;
+
+typedef struct	s_angles
+{
+	float teta;
+	float beta;
+}				t_angles;
+
 typedef struct  s_points
 {
 	int x1;
@@ -74,6 +87,7 @@ t_vector_tab    *convert_to_vector(t_matrice *matrix);
 void			rot_matrix(t_vector_tab *tab, const float teta, const float beta);
 void    		draw(t_data *data);
 int     		key_press(int key, t_data *data);
-void				print_menu(t_data *data);
+void			print_menu(t_data *data);
+void			foreach_vec(t_vector_tab *tab, void (*fun)(), void *param);
 
 #endif
