@@ -66,9 +66,9 @@ t_vector_tab    *convert_to_vector(t_matrice *matrix)
             return (NULL);
         while (j < matrix->len)
         {
-            vector_tab->tab[i][j].x = vector_tab->zoom * (j - mid_x);
-            vector_tab->tab[i][j].y = vector_tab->zoom * (i - mid_y);
-            vector_tab->tab[i][j].z = matrix->line[j] * (vector_tab->zoom / 5);
+            vector_tab->tab[i][j].x = (float)vector_tab->zoom * ((float)j - mid_x);
+            vector_tab->tab[i][j].y = (float)vector_tab->zoom * ((float)i - mid_y);
+            vector_tab->tab[i][j].z = matrix->line[j] * (vector_tab->zoom);
             j++;
         }
         matrix = matrix->next;

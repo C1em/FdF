@@ -13,29 +13,48 @@
 #include <math.h>
 #include <stdlib.h>
 #include "../includes/fdf.h"
+#include <math.h>
 
-static void    rot_vector(t_vector *vector, t_angles *angles)
+#include <stdio.h>
+
+static void    rot_vector(t_vector *vector, t_rot *rot)
 {
-    float y;
     float x;
+    float y;
     float z;
 
-    y = (float)vector->y;
-    x = (float)vector->x;
-    z = (float)vector->z;
+    x = vector->x;
+    y = vector->y;
+    z = vector->z;
+    vector->x = x * (rot->vec->x * rot->vec->x * (1.0f - cos(rot->teta)) + cos(rot->teta)) +
+    y * rot->vec->x * rot->vec->y * (1.0f - cos(rot->teta)) + z * rot->vec->y * sin(rot->teta);
     
-   vector->y = (int)(cos(-angles->beta) * (x * sin(angles->teta) + y * cos(angles->teta)) + z * sin(-angles->beta));
-   vector->z = (int)(-sin(-angles->beta) * (x * sin(angles->teta) + y * cos(angles->teta)) + z * cos(-angles->beta));
-   vector->x = (int)(x * cos(angles->teta) - y * sin(angles->teta));
+    vector->y = x * rot->vec->x * rot->vec->y * (1.0f - cos(rot->teta)) +
+    y * (rot->vec->y * rot->vec->y * (1.0f - cos(rot->teta)) + cos(rot->teta)) - z * rot->vec->x * sin(rot->teta);
+    
+    vector->z = - x * rot->vec->y * sin(rot->teta) +
+    y * rot->vec->x * sin(rot->teta) + z * cos(rot->teta);
 }
 
-void    rot_matrix(t_vector_tab *tab, const float teta, const float beta)
+void    rot_matrix(t_vector_tab *tab, float x, float y)
 {
-    t_angles *angles;
-
-    if (!(angles = (t_angles*)malloc(sizeof(t_angles))))
-        return ;
-        angles->beta = beta;
-        angles->teta = teta;
-    foreach_vec(tab, &rot_vector, angles);
+    t_rot *rot;
+    if (!(rot = (t_rot*)malloc(sizeof(t_rot))))
+    return ;
+    if (!(rot->vec = (t_vector*)malloc(sizeof(t_vector))))
+    return ;
+    rot->teta = sqrt(x * x + y * y) * 0.002f  * ((y > 0) ? -1.0f : 1.0f);
+    if (y == 0)
+    {
+        rot->teta = x * 0.002f;
+        rot->vec->y = 1;
+        rot->vec->x = 0;
+    }
+    else
+    {
+        rot->teta = sqrt(x * x + y * y) * 0.002f  * ((y > 0) ? -1.0f : 1.0f);
+        rot->vec->y = sin(atan(x / -y));
+        rot->vec->x = cos(atan(x / -y));
+    }
+    foreach_vec(tab, &rot_vector, rot);
 }

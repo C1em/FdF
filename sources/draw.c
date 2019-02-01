@@ -31,81 +31,51 @@ static void    put_pixel(int x, int y, int color, char *img_str)
 
 static void    draw_line(t_points *points, int color, char *img_str)
 {
-    int x1;
-    int x2;
-    int y1;
-    int y2;
-    float gradient;
-    int x;
-    float interY;
-    int steep;
+    int dx;
+    int dy;
+	int sign_x;
+    int sign_y;
+	int x;
+    int y;
+	int		error[2];
 
-    x1 = points->x1;
-    x2 = points->x2;
-    y1 = points->y1;
-    y2 = points->y2;
-    steep = ft_absolute(y2 - y1) > ft_absolute(x2 - x1);
-    if (steep)
-    {
-        ft_memswap(&x1 , &y1, 4);
-        ft_memswap(&x2 , &y2, 4);
-    }
-    if (x1 > x2)
-    {
-        ft_memswap(&x1 ,&x2, 4);
-        ft_memswap(&y1 ,&y2, 4);
-    }
-    if (x2 != x1)
-        gradient = (float)(y2 - y1) / (float)(x2 - x1);
-    else
-        gradient = 1;
-    interY = y1;
-    x = x1;
-    if (steep)
-    {
-        while (x <= x2)
-        {
-            put_pixel((int)interY, x, (int)((float)(unsigned char)color * (1 - (interY - (int)interY)))
-            | (((int)((float)(unsigned char)(color >> 8) * (1 - (interY - (int)interY)))) << 8)
-            | (((int)((float)(unsigned char)(color >>16) * (1 - (interY - (int)interY)))) << 16), img_str);
-            put_pixel((int)interY - 1, x, (int)((float)(unsigned char)color * (interY - (int)interY))
-            | (((int)((float)(unsigned char)(color >> 8) * (interY - (int)interY))) << 8)
-            | (((int)((float)(unsigned char)(color >>16) * (interY - (int)interY))) << 16), img_str);
-            interY += gradient;
-            x++;
-        }
-    }
-    else
-    {
-        while (x <= x2)
-        {
-            put_pixel(x, (int)interY, (int)((float)(unsigned char)color * (1 - (interY - (int)interY)))
-            | (((int)((float)(unsigned char)(color >> 8) * (1 - (interY - (int)interY)))) << 8)
-            | (((int)((float)(unsigned char)(color >>16) * (1 - (interY - (int)interY)))) << 16), img_str);
-            put_pixel(x, (int)interY - 1, (int)((float)(unsigned char)color * (interY - (int)interY))
-            | (((int)((float)(unsigned char)(color >> 8) * (interY - (int)interY))) << 8)
-            | (((int)((float)(unsigned char)(color >>16) * (interY - (int)interY))) << 16), img_str);
-            interY += gradient;
-            x++;
-        }
-    }
-
+	dx = ft_absolute(points->x2 - points->x1);
+	dy = ft_absolute(points->y1 - points->y2);
+	sign_x = points->x1 < points->x2 ? 1 : -1;
+	sign_y = points->y1 < points->y2 ? 1 : -1;
+	error[0] = dx - dy;
+    x = points->x1;
+    y = points->y1;
+	while (x != points->x2 || y != points->y2)
+	{
+		put_pixel(x, y, color, img_str);
+		if ((error[1] = error[0] * 2) > -dy)
+		{
+			error[0] -= dy;
+			x += sign_x;
+		}
+		if (error[1] < dx)
+		{
+			error[0] += dx;
+			y += sign_y;
+		}
+	}
 }
 
 static void    add_points(t_vector_tab *tab, t_data *data, int i, int j)
 {
-    data->points->x1 = tab->tab[i][j].x + LENGHT / 2;
-    data->points->y1 = tab->tab[i][j].y + HEIGHT / 2;
+    data->points->x1 = (int)(tab->tab[i][j].x + LENGHT / 2.0f);
+    data->points->y1 = (int)(tab->tab[i][j].y + HEIGHT / 2.0f);
     if (j + 1 != tab->nb_col)
     {
-        data->points->x2 = tab->tab[i][j + 1].x + LENGHT / 2;
-        data->points->y2 = tab->tab[i][j + 1].y + HEIGHT /2;
+        data->points->x2 = (int)(tab->tab[i][j + 1].x + LENGHT / 2.0f);
+        data->points->y2 = (int)(tab->tab[i][j + 1].y + HEIGHT / 2.0f);
         draw_line(data->points, 0xFFFFFF, data->img_info->img_str);
     }
     if (i + 1 != tab->nb_lines)
     {
-        data->points->x2 = tab->tab[i + 1][j].x + LENGHT / 2;
-        data->points->y2 = tab->tab[i + 1][j].y + HEIGHT / 2;
+        data->points->x2 = (int)(tab->tab[i + 1][j].x + LENGHT / 2.0f);
+        data->points->y2 = (int)(tab->tab[i + 1][j].y + HEIGHT / 2.0f);
         draw_line(data->points, 0xFFFFFF, data->img_info->img_str);
     }
 }
@@ -126,4 +96,8 @@ void    draw(t_data *data)
     mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img_info->img_ptr, 0, 0);
     print_menu(data);
     mlx_hook(data->win_ptr, 2, 0, &key_press, data);
+    mlx_hook(data->win_ptr, 4, 0, &mouse_press, data->mouse);
+    mlx_hook(data->win_ptr, 5, 0, &mouse_release, data->mouse);
+    mlx_hook(data->win_ptr, 6, 0, &mouse_move, data);
+    mlx_hook(data->win_ptr, 17, 0, &close, data);
 }
