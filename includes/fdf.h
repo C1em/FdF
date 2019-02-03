@@ -41,6 +41,7 @@ typedef struct  s_vector
 	float x;
 	float y;
 	float z;
+	int color;
 }               t_vector;
 
 typedef struct	s_rot
@@ -62,6 +63,7 @@ typedef struct  s_vector_tab
 	int nb_lines;
 	int nb_col;
 	int zoom;
+	int color;
 }               t_vector_tab;
 
 typedef struct  s_matrice
@@ -82,8 +84,10 @@ typedef struct	s_mouse
 
 typedef struct  s_data
 {
+	int menu_open;
 	void *mlx_ptr;
 	void *win_ptr;
+	t_matrice *matrix;
 	t_img_info *img_info;
 	t_points *points;
 	t_vector_tab *tab;
@@ -103,5 +107,8 @@ int				mouse_press(int button, int x, int y, t_mouse *mouse);
 int				mouse_release(int button, int x, int y, t_mouse *mouse);
 int				mouse_move(int x, int y, t_data *data);
 int				close(void *param);
+void			free_tab(t_vector_tab *tab);
+void			free_lst(t_matrice *matrix);
+void			ft_color(int key, t_vector_tab *tab);
 
 #endif

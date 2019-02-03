@@ -62,31 +62,13 @@ static void altitude(t_vector *vec, t_param *param)
 {
     (void)vec;
     (void)param;
-    /*
-    float x;
-    float y;
-    float z;
-    float teta;
-    float beta;
+}
 
-    x = vec->x;
-    y = vec->y;
-    z = vec->z;
-    teta = param->angles->total_teta;
-    beta = param->angles->total_beta;
-    if (param->sign_or_key == 12)
-    {
-        vec->x = cos(teta) * (x * cos(teta) + z * sin(teta)) +
-        ((z * cos(teta) - x * sin(teta)) * cos(beta) - y * sin(beta) - *param->zoom) * sin(teta);
-        vec->y = cos(beta) * (y * cos(beta) + z * sin(beta)) +
-        ((z * cos(teta) - x * sin(teta)) * cos(beta) - y * sin(beta) - *param->zoom) * sin(teta);
-        vec->z = -sin(beta) * (y * cos(beta) + z * sin(beta)) +
-        (-sin(teta) * (x * cos(teta) + z * sin(teta)) +
-        (cos(beta) * (z * cos(teta) - x * sin(teta)) - y * sin(beta) - *param->zoom) * cos(teta)) * cos(beta);
-        return ;
-    }
-    vec->z *= 1.1f;
-    */
+static void reset (t_data *data)
+{
+    free_tab(data->tab);
+    data->tab = convert_to_vector(data->matrix);
+    
 }
 
 int         key_press(int key, t_data *data)
@@ -96,7 +78,6 @@ int         key_press(int key, t_data *data)
     if (!(param = (t_param*)malloc(sizeof (t_param))))
         return (0);
     param->zoom = &data->tab->zoom;
-//    param->angles = data->angles;
     if (key == 53)
         exit(0);
     if (key > 122 && key < 127)
@@ -105,6 +86,12 @@ int         key_press(int key, t_data *data)
         foreach_vec(data->tab, &ft_zoom, param);
     else if (param->sign_or_key == 12 || param->sign_or_key == 14)
         foreach_vec(data->tab, &altitude, param);
+    else if (key == 4)
+        data->menu_open ^= 1;
+    else if (key == 49)
+        reset(data);
+    else if (key > 81 && key < 86)
+        ft_color(key, data->tab);
     else
         return (0);
     mlx_destroy_image(data->mlx_ptr, data->img_info->img_ptr);
@@ -113,5 +100,6 @@ int         key_press(int key, t_data *data)
     draw(data);
     mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img_info->img_ptr, 0, 0);
     print_menu(data);
+    free(param);
     return (0);
 }

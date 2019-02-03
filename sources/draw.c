@@ -70,13 +70,17 @@ static void    add_points(t_vector_tab *tab, t_data *data, int i, int j)
     {
         data->points->x2 = (int)(tab->tab[i][j + 1].x + LENGHT / 2.0f);
         data->points->y2 = (int)(tab->tab[i][j + 1].y + HEIGHT / 2.0f);
-        draw_line(data->points, 0xFFFFFF, data->img_info->img_str);
+        draw_line(data->points, ((tab->tab[i][j + 1].color == tab->tab[i][j].color
+        && tab->tab[i][j].color) ? tab->tab[i][j].color : tab->color),
+        data->img_info->img_str);
     }
     if (i + 1 != tab->nb_lines)
     {
         data->points->x2 = (int)(tab->tab[i + 1][j].x + LENGHT / 2.0f);
         data->points->y2 = (int)(tab->tab[i + 1][j].y + HEIGHT / 2.0f);
-        draw_line(data->points, 0xFFFFFF, data->img_info->img_str);
+        draw_line(data->points, ((tab->tab[i + 1][j].color == tab->tab[i][j].color
+        && tab->tab[i][j].color) ? tab->tab[i][j].color : tab->color),
+        data->img_info->img_str);
     }
 }
 

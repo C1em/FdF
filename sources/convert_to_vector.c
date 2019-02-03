@@ -59,6 +59,7 @@ t_vector_tab    *convert_to_vector(t_matrice *matrix)
     if (!(vector_tab->tab = (t_vector**)malloc(sizeof(t_vector*) * vector_tab->nb_lines)))
         return (NULL);
     i = 0;
+    vector_tab->color = 0xFFFFFF;
     while (i < vector_tab->nb_lines)
     {
         j = 0;
@@ -69,6 +70,7 @@ t_vector_tab    *convert_to_vector(t_matrice *matrix)
             vector_tab->tab[i][j].x = (float)vector_tab->zoom * ((float)j - mid_x);
             vector_tab->tab[i][j].y = (float)vector_tab->zoom * ((float)i - mid_y);
             vector_tab->tab[i][j].z = matrix->line[j] * (vector_tab->zoom);
+            vector_tab->tab[i][j].color = (matrix->line[j]) ? 0xFFFFFF : 0x000000;
             j++;
         }
         matrix = matrix->next;

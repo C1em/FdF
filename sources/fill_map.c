@@ -43,6 +43,7 @@ static void    add_line(t_matrice *last_line, int *line, int len)
     new_line->line = ft_memdup(line, len * 4);
     new_line->next = NULL;
     new_line->len = len;
+    free(line);
     last_line->next = new_line;
 }
 
@@ -75,6 +76,7 @@ static t_matrice   *new_matrice(int *first_line, size_t len)
      new->line = ft_memdup(first_line, len * 4);
      new->len = len;
      new->next = NULL;
+     free(first_line);
      return (new);
 }
 
