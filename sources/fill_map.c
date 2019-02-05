@@ -52,16 +52,17 @@ static void			add_line(t_matrice *last_line, int *line, int len)
 	last_line->next = new_line;
 }
 
-static int			*convert_to_int_tab(char *line, size_t *len)
+static int			*convert_to_int_tab(char *line, size_t len)
 {
 	int *tab;
 	int i;
 
 	i = 0;
-	*len = map_len(line);
-	if (!(tab = (int*)malloc(sizeof(int) * *len)))
+	if (map_len(line) != len)
+		ft_error(-2);
+	if (!(tab = (int*)malloc(sizeof(int) * len)))
 		ft_error(errno);
-	while (i < (int)*len)
+	while (i < (int)len)
 	{
 		tab[i++] = ft_atoi(line);
 		while ((int)*line == ' ')
@@ -98,11 +99,12 @@ t_matrice			*fill_map(char *path)
 		ft_error(errno);
 	if (get_next_line(fd, &line) != 1)
 		ft_error(-1);
-	matrice = new_matrice(convert_to_int_tab(line, &len), len);
+	len = map_len(line);
+	matrice = new_matrice(convert_to_int_tab(line, len), len);
 	begin = matrice;
 	while (get_next_line(fd, &line))
 	{
-		add_line(matrice, convert_to_int_tab(line, &len), len);
+		add_line(matrice, convert_to_int_tab(line, len), len);
 		matrice = matrice->next;
 	}
 	if (close(fd) == -1)

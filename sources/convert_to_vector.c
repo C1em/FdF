@@ -20,7 +20,7 @@ static void			find_mid(t_matrice *matrix, float *mid_x,
 	size_t y;
 
 	y = 0;
-	*mid_x = (matrix->len - 1) / 2;
+	*mid_x = ((float)matrix->len - 1.0f) / 2.0f;
 	while (matrix->next)
 	{
 		matrix = matrix->next;
@@ -28,7 +28,7 @@ static void			find_mid(t_matrice *matrix, float *mid_x,
 	}
 	*zoom = ((LENGHT / (int)matrix->len < HEIGHT / (y + 1)) ?
 					LENGHT / matrix->len : HEIGHT / (y + 1));
-	*mid_y = y / 2;
+	*mid_y = (float)y / 2.0f;
 }
 
 static size_t		count_line(t_matrice *matrix)
@@ -58,6 +58,7 @@ static t_vector_tab	*new_vector_tab(t_matrice *matrice,
 											vector_tab->nb_lines)))
 		ft_error(errno);
 	vector_tab->color = 0xFFFFFF;
+	return (vector_tab);
 }
 
 t_vector_tab		*convert_to_vector(t_matrice *matrix)

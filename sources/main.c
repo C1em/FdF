@@ -6,7 +6,7 @@
 /*   By: coremart <coremart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 00:26:43 by coremart          #+#    #+#             */
-/*   Updated: 2019/02/05 06:09:41 by coremart         ###   ########.fr       */
+/*   Updated: 2019/02/05 14:37:09 by coremart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,7 @@ int		main(int ac, char **av)
 	t_data *data;
 
 	if (ac != 2)
-	{
-		ft_putstr("usage : ./fdf file");
-		exit(1);
-	}
+		ft_error(-3);
 	data = window_init();
 	data->matrix = fill_map(av[1]);
 	data->tab = convert_to_vector(data->matrix);
