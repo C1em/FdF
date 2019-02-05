@@ -6,7 +6,7 @@
 /*   By: coremart <coremart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 00:48:33 by coremart          #+#    #+#             */
-/*   Updated: 2019/01/24 18:38:56 by aljacque         ###   ########.fr       */
+/*   Updated: 2019/02/05 06:36:01 by coremart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct s_param
 {
 	int *zoom;
 	char axe;
-	int sign_or_key;
+	int sign;
 }				t_param;
 
 typedef struct  s_vector_tab
@@ -106,9 +106,12 @@ void			foreach_vec(t_vector_tab *tab, void (*fun)(), void *param);
 int				mouse_press(int button, int x, int y, t_mouse *mouse);
 int				mouse_release(int button, int x, int y, t_mouse *mouse);
 int				mouse_move(int x, int y, t_data *data);
-int				close(void *param);
+int				finish(void *param);
 void			free_tab(t_vector_tab *tab);
 void			free_lst(t_matrice *matrix);
 void			ft_color(int key, t_vector_tab *tab);
+void			ft_error(int errnum);
+void			reset(t_data *data);
+void			reset_img(t_data *data);
 
 #endif

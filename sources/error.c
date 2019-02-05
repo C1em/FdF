@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: coremart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/03 03:00:44 by coremart          #+#    #+#             */
-/*   Updated: 2019/02/05 05:16:34 by coremart         ###   ########.fr       */
+/*   Created: 2019/02/05 04:32:26 by coremart          #+#    #+#             */
+/*   Updated: 2019/02/05 05:09:30 by coremart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "../includes/fdf.h"
+#include <string.h>
+#include "../libft/libft.h"
 
-void	free_tab(t_vector_tab *tab)
+void	ft_error(int errnum)
 {
-	int i;
-
-	i = 0;
-	while (i < tab->nb_lines)
-		free(tab->tab[i++]);
-}
-
-void	free_lst(t_matrice *matrix)
-{
-	while (matrix)
+	if (errnum == -1)
 	{
-		free(matrix->line);
-		matrix = matrix->next;
+		ft_putendl("error : empty file");
+		exit(1);
 	}
+	strerror(errnum);
+	exit(1);
 }
