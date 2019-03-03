@@ -50,21 +50,23 @@ typedef struct	s_rot
 	t_vector	*vec;
 }				t_rot;
 
-typedef struct	s_param
-{
-	int		*zoom;
-	char	axe;
-	int		sign;
-}				t_param;
-
 typedef struct	s_vector_tab
 {
 	t_vector	**tab;
 	int			nb_lines;
 	int			nb_col;
 	int			zoom;
+	t_vector	eigen;
 	int			color;
 }				t_vector_tab;
+
+typedef struct	s_param
+{
+	int			*zoom;
+	char		axe;
+	int			sign;
+	t_vector	*eigen;
+}				t_param;
 
 typedef struct	s_matrice
 {
@@ -94,7 +96,7 @@ typedef struct	s_data
 	t_mouse			*mouse;
 }				t_data;
 
-t_matrice		*fill_map(char *path);
+t_matrice		*fill_map(const char *path);
 int				key_events(int keycode);
 int				ft_open_window(void);
 t_vector_tab	*convert_to_vector(t_matrice *matrix);

@@ -45,7 +45,7 @@ int		main(int ac, char **av)
 	if (ac != 2)
 		ft_error(-3);
 	data = window_init();
-	data->matrix = fill_map(av[1]);
+	data->matrix = fill_map((const char*)av[1]);
 	data->tab = convert_to_vector(data->matrix);
 	draw(data);
 	mlx_loop(data->mlx_ptr);

@@ -6,7 +6,7 @@
 /*   By: coremart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 10:18:56 by coremart          #+#    #+#             */
-/*   Updated: 2018/11/16 13:58:18 by coremart         ###   ########.fr       */
+/*   Updated: 2019/02/06 16:48:22 by coremart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFT_H
 
 # include <string.h>
+# define BUFF_SIZE 3
 
 typedef struct	s_list
 {
@@ -22,6 +23,14 @@ typedef struct	s_list
 	struct s_list	*next;
 }				t_list;
 
+typedef struct	s_fd
+{
+	char		*content;
+	int			fd;
+	struct s_fd	*next;
+}				t_fd;
+
+int				get_next_line(const int fd, char **line);
 size_t			ft_strlen(const char *str);
 char			*ft_strdup(const char *s1);
 char			*ft_strcpy(char *dst, const char *src);

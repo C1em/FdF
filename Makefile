@@ -6,7 +6,7 @@
 #    By: aljacque <aljacque@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/20 18:29:57 by aljacque          #+#    #+#              #
-#    Updated: 2019/01/25 23:03:47 by aljacque         ###   ########.fr        #
+#    Updated: 2019/03/03 05:03:53 by coremart         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,22 +45,22 @@ WHITE       = \033[1;37m
 all: $(NAME)
 
 $(NAME):
-	@sh loading.sh
-	@clear
+#	@sh loading.sh
+#	@clear
 	@make -C $(LIB)
 	@gcc -o $(NAME) $(LIBA) $(SRC) $(FLAGS) $(FLAGSLIBX)
-	@clear
+#	@clear
 
 %.o: %.c
 	@gcc  $(FLAGS) -o $@ -c $<
 
 clean:
-	@sh delete.sh
+#	@sh delete.sh
 	@make -C $(LIB) clean
 	@rm -f $(OBJ)
 
 fclean: clean
-	@sh delete.sh
+#	@sh delete.sh
 	@make -C $(LIB) fclean
 	@rm -f $(NAME)
 

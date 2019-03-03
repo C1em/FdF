@@ -31,7 +31,7 @@ void	print_menu(t_data *data)
 		mlx_string_put(data->mlx_ptr, data->win_ptr, 20, 70, GREY,
 				"Change color : NUMPAD [0] [1] [2] [3]");
 		mlx_string_put(data->mlx_ptr, data->win_ptr, 20, 90, GREY,
-				"Flatten map : [Q] / [E]");
+				"Modify altitude: : [Q] / [E]");
 		mlx_string_put(data->mlx_ptr, data->win_ptr, 20, 130, GREY,
 				"default position : [SPACE]");
 		mlx_string_put(data->mlx_ptr, data->win_ptr, 20, 150, GREY,

@@ -58,6 +58,9 @@ static t_vector_tab	*new_vector_tab(t_matrice *matrice,
 											vector_tab->nb_lines)))
 		ft_error(errno);
 	vector_tab->color = 0xFFFFFF;
+	vector_tab->eigen.x = 0.0f;
+	vector_tab->eigen.y = 0.0f;
+	vector_tab->eigen.z = (float)vector_tab->zoom;
 	return (vector_tab);
 }
 
@@ -70,10 +73,9 @@ t_vector_tab		*convert_to_vector(t_matrice *matrix)
 	t_vector_tab	*v_tab;
 
 	v_tab = new_vector_tab(matrix, &mid_x, &mid_y);
-	i = 0;
-	while (i < v_tab->nb_lines)
+	i = -1;
+	while (++i < v_tab->nb_lines && (j = -1))
 	{
-		j = -1;
 		if (!(v_tab->tab[i] = (t_vector*)malloc(sizeof(t_vector) *
 			matrix->len)))
 			ft_error(errno);
@@ -81,11 +83,11 @@ t_vector_tab		*convert_to_vector(t_matrice *matrix)
 		{
 			v_tab->tab[i][j].x = (float)v_tab->zoom * ((float)j - mid_x);
 			v_tab->tab[i][j].y = (float)v_tab->zoom * ((float)i - mid_y);
-			v_tab->tab[i][j].z = matrix->line[j] * (v_tab->zoom);
-			v_tab->tab[i][j].color = (matrix->line[j]) ? 0xFFFFFF : 0x000000;
+			v_tab->tab[i][j].z = matrix->line[j] * v_tab->zoom;
+			v_tab->tab[i][j].color = (matrix->line[j] > 0) ? 0xFFFFFF :
+																0x000000;
 		}
 		matrix = matrix->next;
-		i++;
 	}
 	return (v_tab);
 }

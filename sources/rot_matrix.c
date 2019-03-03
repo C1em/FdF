@@ -57,6 +57,7 @@ void		rot_matrix(t_vector_tab *tab, float x, float y)
 		rot->vec->x = cos(atan(x / -y));
 	}
 	foreach_vec(tab, &rot_vector, rot);
+	rot_vector(&tab->eigen, rot);
 	free(rot->vec);
 	free(rot);
 }

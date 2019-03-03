@@ -6,12 +6,11 @@
 /*   By: coremart <coremart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 00:29:21 by coremart          #+#    #+#             */
-/*   Updated: 2019/02/05 06:32:24 by coremart         ###   ########.fr       */
+/*   Updated: 2019/02/06 16:50:05 by coremart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
-#include "../includes/get_next_line.h"
 #include "../includes/fdf.h"
 #include <fcntl.h>
 #include <stdlib.h>
@@ -20,7 +19,7 @@
 
 #include <stdio.h>
 
-static size_t		map_len(char *line)
+static size_t		map_len(const char *line)
 {
 	int		i;
 	size_t	res;
@@ -38,7 +37,7 @@ static size_t		map_len(char *line)
 	return (res);
 }
 
-static void			add_line(t_matrice *last_line, int *line, int len)
+static void			add_line(t_matrice *last_line, int *line, const size_t len)
 {
 	t_matrice *new_line;
 
@@ -52,17 +51,17 @@ static void			add_line(t_matrice *last_line, int *line, int len)
 	last_line->next = new_line;
 }
 
-static int			*convert_to_int_tab(char *line, size_t len)
+static int			*convert_to_int_tab(char *line, const size_t len)
 {
-	int *tab;
-	int i;
+	int		*tab;
+	size_t	i;
 
 	i = 0;
-	if (map_len(line) != len)
+	if (map_len((const char*)line) != len)
 		ft_error(-2);
 	if (!(tab = (int*)malloc(sizeof(int) * len)))
 		ft_error(errno);
-	while (i < (int)len)
+	while (i < len)
 	{
 		tab[i++] = ft_atoi(line);
 		while ((int)*line == ' ')
@@ -73,7 +72,7 @@ static int			*convert_to_int_tab(char *line, size_t len)
 	return (tab);
 }
 
-static t_matrice	*new_matrice(int *first_line, size_t len)
+static t_matrice	*new_matrice(int *first_line, const size_t len)
 {
 	t_matrice *new;
 
@@ -87,7 +86,7 @@ static t_matrice	*new_matrice(int *first_line, size_t len)
 	return (new);
 }
 
-t_matrice			*fill_map(char *path)
+t_matrice			*fill_map(const char *path)
 {
 	int			fd;
 	char		*line;
@@ -99,12 +98,14 @@ t_matrice			*fill_map(char *path)
 		ft_error(errno);
 	if (get_next_line(fd, &line) != 1)
 		ft_error(-1);
-	len = map_len(line);
-	matrice = new_matrice(convert_to_int_tab(line, len), len);
+	len = map_len((const char*)line);
+	matrice = new_matrice(convert_to_int_tab(line, (const size_t)len),
+		(const size_t)len);
 	begin = matrice;
 	while (get_next_line(fd, &line))
 	{
-		add_line(matrice, convert_to_int_tab(line, len), len);
+		add_line(matrice, convert_to_int_tab(line, (const size_t)len),
+			(const size_t)len);
 		matrice = matrice->next;
 	}
 	if (close(fd) == -1)

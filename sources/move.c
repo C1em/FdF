@@ -41,9 +41,9 @@ static void	ft_zoom(t_vector *vec, int *key)
 {
 	if (*key == 69)
 	{
-		vec->x = vec->x * 1.10f;
-		vec->y = vec->y * 1.10f;
-		vec->z = vec->z * 1.10f;
+		vec->x *= 1.10f;
+		vec->y *= 1.10f;
+		vec->z *= 1.10f;
 		return ;
 	}
 	vec->x = vec->x * 100.0f / 110.0f;
@@ -51,27 +51,39 @@ static void	ft_zoom(t_vector *vec, int *key)
 	vec->z = vec->z * 100.0f / 110.0f;
 }
 
-static void	altitude(t_vector *vec, int *key)
+static void	altitude(t_vector *vec, t_param *param)
 {
-	if (*key == 12)
-		vec->z /= 1.2f;
+	if (!vec->color)
+		return ;
+	if (param->sign == 12)
+	{
+		vec->x -= param->eigen->x * 0.25f;
+		vec->y -= param->eigen->y * 0.25f;
+		vec->z -= param->eigen->z * 0.25f;
+	}
 	else
-		vec->z *= 1.2f;
+	{
+		vec->x += param->eigen->x * 0.25f;
+		vec->y += param->eigen->y * 0.25f;
+		vec->z += param->eigen->z * 0.25f;
+	}
 }
 
 int			key_press(int key, t_data *data)
 {
-	t_param *param;
+	t_param param;
 
-	if (!(param = (t_param*)malloc(sizeof(t_param))))
-		ft_error(errno);
-	param->zoom = &data->tab->zoom;
+	param.zoom = &data->tab->zoom;
+	param.eigen = &data->tab->eigen;
 	if (key > 122 && key < 127)
-		key_arrow(key, data->tab, param);
+		key_arrow(key, data->tab, &param);
 	else if (key == 69 || key == 78)
+	{
 		foreach_vec(data->tab, &ft_zoom, &key);
-	else if (key == 12 || key == 14)
-		foreach_vec(data->tab, &altitude, &key);
+		ft_zoom(&data->tab->eigen, &key);
+	}
+	else if ((key == 12 || key == 14) && (param.sign = key))
+		foreach_vec(data->tab, &altitude, &param);
 	else if (key == 4)
 		data->menu_open ^= 1;
 	else if (key == 49)
@@ -81,6 +93,5 @@ int			key_press(int key, t_data *data)
 	else
 		return (0);
 	reset_img(data);
-	free(param);
 	return (0);
 }

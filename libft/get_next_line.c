@@ -6,12 +6,11 @@
 /*   By: coremart <coremart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/16 17:20:49 by coremart          #+#    #+#             */
-/*   Updated: 2019/01/20 19:45:50 by aljacque         ###   ########.fr       */
+/*   Updated: 2019/02/06 16:49:20 by coremart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/get_next_line.h"
-#include "../libft/libft.h"
+#include "libft.h"
 #include <sys/types.h>
 #include <sys/uio.h>
 #include <unistd.h>
