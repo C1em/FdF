@@ -6,13 +6,13 @@
 /*   By: coremart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 00:18:13 by coremart          #+#    #+#             */
-/*   Updated: 2019/01/25 00:18:14 by coremart         ###   ########.fr       */
+/*   Updated: 2019/03/04 00:58:55 by coremart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-float   ft_absolute(float nb)
+float	ft_absolute(float nb)
 {
-    if (nb < 0)
-        return (-nb);
-    return (nb);
+	if (nb < 0)
+		return (-nb);
+	return (nb);
 }

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   rot_matrix.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coremart <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: coremart <coremart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 23:44:08 by coremart          #+#    #+#             */
-/*   Updated: 2019/02/05 05:28:15 by coremart         ###   ########.fr       */
+/*   Updated: 2019/03/04 05:21:27 by coremart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include <stdlib.h>
-#include "../includes/fdf.h"
+#include "fdf.h"
 #include <math.h>
 #include <errno.h>
 
@@ -25,14 +25,14 @@ static void	rot_vector(t_vector *vector, t_rot *rot)
 	x = vector->x;
 	y = vector->y;
 	z = vector->z;
-	vector->x = x * (rot->vec->x * rot->vec->x * (1.0f - cos(rot->teta)) +
-			cos(rot->teta)) + y * rot->vec->x * rot->vec->y *
-			(1.0f - cos(rot->teta)) + z * rot->vec->y * sin(rot->teta);
-	vector->y = x * rot->vec->x * rot->vec->y * (1.0f - cos(rot->teta)) +
-			y * (rot->vec->y * rot->vec->y * (1.0f - cos(rot->teta))
+	vector->x = x * (rot->vec->x * rot->vec->x * (1.0f - cos(rot->teta))
+			+ cos(rot->teta)) + y * rot->vec->x * rot->vec->y
+			* (1.0f - cos(rot->teta)) + z * rot->vec->y * sin(rot->teta);
+	vector->y = x * rot->vec->x * rot->vec->y * (1.0f - cos(rot->teta))
+			+ y * (rot->vec->y * rot->vec->y * (1.0f - cos(rot->teta))
 			+ cos(rot->teta)) - z * rot->vec->x * sin(rot->teta);
-	vector->z = -x * rot->vec->y * sin(rot->teta) + y *
-			rot->vec->x * sin(rot->teta) + z * cos(rot->teta);
+	vector->z = -x * rot->vec->y * sin(rot->teta) + y
+			* rot->vec->x * sin(rot->teta) + z * cos(rot->teta);
 }
 
 void		rot_matrix(t_vector_tab *tab, float x, float y)

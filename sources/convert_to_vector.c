@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "fdf.h"
 #include <stdlib.h>
 #include <errno.h>
 
@@ -26,8 +26,8 @@ static void			find_mid(t_matrice *matrix, float *mid_x,
 		matrix = matrix->next;
 		y++;
 	}
-	*zoom = ((LENGHT / (int)matrix->len < HEIGHT / (y + 1)) ?
-					LENGHT / matrix->len : HEIGHT / (y + 1));
+	*zoom = ((LENGHT / (int)matrix->len < HEIGHT / (y + 1))
+						? LENGHT / matrix->len : HEIGHT / (y + 1));
 	*mid_y = (float)y / 2.0f;
 }
 
@@ -54,8 +54,8 @@ static t_vector_tab	*new_vector_tab(t_matrice *matrice,
 	find_mid(matrice, mid_x, mid_y, &vector_tab->zoom);
 	vector_tab->nb_lines = count_line(matrice);
 	vector_tab->nb_col = matrice->len;
-	if (!(vector_tab->tab = (t_vector**)malloc(sizeof(t_vector*) *
-											vector_tab->nb_lines)))
+	if (!(vector_tab->tab = (t_vector**)malloc(sizeof(t_vector*)
+											* vector_tab->nb_lines)))
 		ft_error(errno);
 	vector_tab->color = 0xFFFFFF;
 	vector_tab->eigen.x = 0.0f;
@@ -76,16 +76,16 @@ t_vector_tab		*convert_to_vector(t_matrice *matrix)
 	i = -1;
 	while (++i < v_tab->nb_lines && (j = -1))
 	{
-		if (!(v_tab->tab[i] = (t_vector*)malloc(sizeof(t_vector) *
-			matrix->len)))
+		if (!(v_tab->tab[i] = (t_vector*)malloc(sizeof(t_vector)
+													* matrix->len)))
 			ft_error(errno);
 		while (++j < matrix->len)
 		{
 			v_tab->tab[i][j].x = (float)v_tab->zoom * ((float)j - mid_x);
 			v_tab->tab[i][j].y = (float)v_tab->zoom * ((float)i - mid_y);
 			v_tab->tab[i][j].z = matrix->line[j] * v_tab->zoom;
-			v_tab->tab[i][j].color = (matrix->line[j] > 0) ? 0xFFFFFF :
-																0x000000;
+			v_tab->tab[i][j].color = (matrix->line[j] > 0) ? 0xFFFFFF
+															: 0x000000;
 		}
 		matrix = matrix->next;
 	}

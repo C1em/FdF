@@ -6,12 +6,12 @@
 /*   By: coremart <coremart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 15:31:05 by coremart          #+#    #+#             */
-/*   Updated: 2019/02/05 06:35:44 by coremart         ###   ########.fr       */
+/*   Updated: 2019/03/04 06:49:19 by coremart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
-#include "../libft/libft.h"
+#include "fdf.h"
+#include "libft.h"
 #include <stdlib.h>
 #include <mlx.h>
 
@@ -64,18 +64,18 @@ static void	add_points(t_vector_tab *tab, t_data *data, int i, int j)
 	{
 		data->points->x2 = (int)(tab->tab[i][j + 1].x + LENGHT / 2.0f);
 		data->points->y2 = (int)(tab->tab[i][j + 1].y + HEIGHT / 2.0f);
-		draw_line(data->points, ((tab->tab[i][j + 1].color ==
-					tab->tab[i][j].color && tab->tab[i][j].color)
-					? tab->tab[i][j].color : tab->color),
+		draw_line(data->points, ((tab->tab[i][j + 1].color
+				== tab->tab[i][j].color && tab->tab[i][j].color)
+				? tab->tab[i][j].color : tab->color),
 				data->img_info->img_str);
 	}
 	if (i + 1 != tab->nb_lines)
 	{
 		data->points->x2 = (int)(tab->tab[i + 1][j].x + LENGHT / 2.0f);
 		data->points->y2 = (int)(tab->tab[i + 1][j].y + HEIGHT / 2.0f);
-		draw_line(data->points, ((tab->tab[i + 1][j].color ==
-					tab->tab[i][j].color && tab->tab[i][j].color)
-					? tab->tab[i][j].color : tab->color),
+		draw_line(data->points, ((tab->tab[i + 1][j].color
+				== tab->tab[i][j].color && tab->tab[i][j].color)
+				? tab->tab[i][j].color : tab->color),
 				data->img_info->img_str);
 	}
 }

@@ -6,7 +6,7 @@
 #    By: aljacque <aljacque@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/20 18:29:57 by aljacque          #+#    #+#              #
-#    Updated: 2019/03/03 05:03:53 by coremart         ###   ########.fr        #
+#    Updated: 2019/03/04 07:08:27 by coremart         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,44 +16,35 @@ FLAGS = -Werror -Wall -Wextra
 FLAGSLIBX = -lmlx -framework OpenGL -framework AppKit
 
 ### INCLUDES ###
-LIB = libft/
-INC = includes/*.h
-LIBA = libft/libft.a
+LIB = libft
+LIBH = $(LIB)/include
+HDIR = includes
+LIBA = $(LIB)/libft.a
 
 ### SOURCES ###
-SRC = sources/*.c
+SDIR = sources
+_SRCS = close.c convert_to_vector.c draw.c error.c fill_map.c foreach_vec.c \
+free.c ft_color.c main.c menu.c mouse.c move.c reset.c rot_matrix.c
+SRC = $(patsubst %,$(SDIR)/%,$(_SRCS))
 
 ### OBJECTS ####
-OBJ = $(SRC:.c=.o)
-
-### COLORS ###
-RESET       = \033[0m
-BOLD        = \033[1m
-UNDERLINE   = \033[4m
-BLACK       = \033[1;30m
-RED         = \033[1;31m
-GREEN       = \033[1;32m
-YELLOW      = \033[1;33m
-BLUE        = \033[1;34m
-VIOLET      = \033[1;35m
-CYAN        = \033[1;36m
-WHITE       = \033[1;37m
+ODIR = objects
+_OBJ = $(_SRCS:.c=.o)
+OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 ### RULES ###
-.PHONY: all clean fclean re
-
 all: $(NAME)
 
-$(NAME):
+$(NAME): $(OBJ)
 #	@sh loading.sh
 #	@clear
-	@make -C $(LIB)
-	@gcc -o $(NAME) $(LIBA) $(SRC) $(FLAGS) $(FLAGSLIBX)
+	make -C $(LIB)
+	gcc -o $(NAME) $(LIBA) $(OBJ) $(FLAGS) $(FLAGSLIBX)
 #	@clear
 
-%.o: %.c
-	@gcc  $(FLAGS) -o $@ -c $<
-
+$(ODIR)/%.o: $(SDIR)/%.c
+	gcc $(FLAGS) -o $@ -c $^ -I $(HDIR) -I $(LIBH)
+	
 clean:
 #	@sh delete.sh
 	@make -C $(LIB) clean
@@ -64,6 +55,6 @@ fclean: clean
 	@make -C $(LIB) fclean
 	@rm -f $(NAME)
 
-re:
-	@$(MAKE) fclean
-	@$(MAKE) all
+re: fclean all
+
+.PHONY: all clean fclean re

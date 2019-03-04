@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   menu.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aljacque <aljacque@student.42.fr>          +#+  +:+       +#+        */
+/*   By: coremart <coremart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 16:40:39 by aljacque          #+#    #+#             */
-/*   Updated: 2019/02/05 05:32:27 by coremart         ###   ########.fr       */
+/*   Updated: 2019/03/04 05:03:25 by coremart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "fdf.h"
 #include <mlx.h>
 
 #define GREY 0x828FA6

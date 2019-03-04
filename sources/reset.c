@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   reset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coremart <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: coremart <coremart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 05:37:35 by coremart          #+#    #+#             */
-/*   Updated: 2019/02/05 06:02:40 by coremart         ###   ########.fr       */
+/*   Updated: 2019/03/04 05:03:38 by coremart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "fdf.h"
 #include <mlx.h>
 
 void	reset(t_data *data)

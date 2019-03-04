@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   mouse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coremart <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: coremart <coremart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/26 02:03:52 by coremart          #+#    #+#             */
-/*   Updated: 2019/02/05 05:21:28 by coremart         ###   ########.fr       */
+/*   Updated: 2019/03/04 05:03:33 by coremart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "fdf.h"
 #include "mlx.h"
 
 int			mouse_press(int button, int x, int y, t_mouse *mouse)

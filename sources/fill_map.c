@@ -6,12 +6,12 @@
 /*   By: coremart <coremart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 00:29:21 by coremart          #+#    #+#             */
-/*   Updated: 2019/02/06 16:50:05 by coremart         ###   ########.fr       */
+/*   Updated: 2019/03/04 06:49:29 by coremart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
-#include "../includes/fdf.h"
+#include "libft.h"
+#include "fdf.h"
 #include <fcntl.h>
 #include <stdlib.h>
 #include <errno.h>

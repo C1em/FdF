@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_color.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coremart <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: coremart <coremart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/03 06:11:25 by coremart          #+#    #+#             */
-/*   Updated: 2019/02/05 05:13:42 by coremart         ###   ########.fr       */
+/*   Updated: 2019/03/04 05:03:15 by coremart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "fdf.h"
 
 static void	put_color_to_vec(t_vector *vec, int *color)
 {

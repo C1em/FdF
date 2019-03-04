@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coremart <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: coremart <coremart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/03 03:00:44 by coremart          #+#    #+#             */
-/*   Updated: 2019/02/05 05:16:34 by coremart         ###   ########.fr       */
+/*   Updated: 2019/03/04 05:02:54 by coremart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "../includes/fdf.h"
+#include "fdf.h"
 
 void	free_tab(t_vector_tab *tab)
 {

@@ -6,11 +6,11 @@
 /*   By: coremart <coremart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 16:32:17 by coremart          #+#    #+#             */
-/*   Updated: 2019/02/05 05:41:12 by coremart         ###   ########.fr       */
+/*   Updated: 2019/03/04 05:03:29 by coremart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "fdf.h"
 #include <stdlib.h>
 #include <mlx.h>
 #include <math.h>
