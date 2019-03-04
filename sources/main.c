@@ -6,7 +6,7 @@
 /*   By: coremart <coremart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 00:26:43 by coremart          #+#    #+#             */
-/*   Updated: 2019/03/04 06:49:33 by coremart         ###   ########.fr       */
+/*   Updated: 2019/03/04 08:15:44 by coremart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,7 @@ int		main(int ac, char **av)
 	free(data->tab);
 	free_lst(data->matrix);
 	free(data);
+	while (1)
+		;
 	return (0);
 }
