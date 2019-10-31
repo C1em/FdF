@@ -6,13 +6,13 @@
 #    By: aljacque <aljacque@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/20 18:29:57 by aljacque          #+#    #+#              #
-#    Updated: 2019/10/31 20:33:48 by coremart         ###   ########.fr        #
+#    Updated: 2019/10/31 23:45:09 by coremart         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ### COMPILATION ###
 NAME = fdf
-CFLAGS = -g -Werror -Wall -Wextra -std=c99
+CFLAGS = -g -Werror -Wall -Wextra -std=c99 -pedantic-errors
 DFLAGS = -MT $@ -MMD -MP -MF $(DDIR)/$*.d
 FLAGSLIBX = -lmlx -framework OpenGL -framework AppKit
 ASANFLAGS = -fsanitize=address -fno-omit-frame-pointer -Wno-format-security \

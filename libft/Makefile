@@ -6,14 +6,14 @@
 #    By: cbenoit <cbenoit@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/08 11:46:04 by coremart          #+#    #+#              #
-#    Updated: 2019/10/31 20:36:57 by coremart         ###   ########.fr        #
+#    Updated: 2019/10/31 23:30:08 by coremart         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ## COMPILATION ##
 NAME = libft.a
 ASANFLAGS = -fsanitize=address -fno-omit-frame-pointer -Wno-format-security -fsanitize=undefined
-CFLAGS = -g -Wall -Wextra -Werror -std=c99
+CFLAGS = -g -Wall -Wextra -Werror -pedantic-errors -std=c99
 DFLAGS = -MT $@ -MMD -MP -MF $(DDIR)/$*.d
 ASAN =
 
