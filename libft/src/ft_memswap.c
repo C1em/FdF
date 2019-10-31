@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_memswap.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: coremart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/09 15:16:55 by coremart          #+#    #+#             */
-/*   Updated: 2018/11/16 13:50:58 by coremart         ###   ########.fr       */
+/*   Created: 2019/01/25 00:21:32 by coremart          #+#    #+#             */
+/*   Updated: 2019/03/08 02:26:02 by coremart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
+#include <stdlib.h>
 
-void	ft_bzero(void *s, size_t n)
+void	ft_memswap(void *s1, void *s2, size_t size)
 {
-	while (n)
-	{
-		*(unsigned char*)s = 0;
-		s++;
-		n--;
-	}
+	void *tmp;
+
+	tmp = ft_memdup(s1, size);
+	s1 = ft_memcpy(s1, s2, size);
+	s2 = ft_memcpy(s2, tmp, size);
+	free(tmp);
 }

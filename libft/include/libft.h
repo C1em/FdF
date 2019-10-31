@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coremart <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cbenoit <cbenoit@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 10:18:56 by coremart          #+#    #+#             */
-/*   Updated: 2019/02/06 16:48:22 by coremart         ###   ########.fr       */
+/*   Updated: 2019/10/18 11:30:15 by cbenoit          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define LIBFT_H
 
 # include <string.h>
-# define BUFF_SIZE 3
+# define BUFF_SIZE 1024
 
 typedef struct	s_list
 {
@@ -89,7 +89,6 @@ void			ft_lstdel(t_list **alst, void (*del)(void*, size_t));
 void			ft_lstadd(t_list **alst, t_list *new);
 void			ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
-
 size_t			ft_lstlen(t_list *lst);
 t_list			*ft_lstdup(t_list *src);
 void			ft_lstprint(t_list *lst);
@@ -101,5 +100,23 @@ int				ft_count_digit(int n);
 void			*ft_memdup(const void *src, size_t size);
 void			ft_memswap(void *s1, void *s2, size_t size);
 float			ft_absolute(float nb);
+void			ft_putnchar(int n, char c);
+void			ft_putnstr(const char *s, size_t n);
+unsigned int	ft_count_digitbase(long nb, const int base);
+unsigned long	ft_pwr(unsigned long nb, unsigned int exp);
+void			ft_putbfloat(float nb);
+void			ft_print_byte(const unsigned char byte,
+								const unsigned int base);
+void			ft_quicksort(int *arr, int size);
+int				ft_ceil(float nb);
+int				ft_isspace(const char c);
+void			*ft_realloc(void *ptr, size_t initial_size, size_t final_size);
+int				ft_isint(const char *str);
+int				ft_atoibase(const char *s, const char *base);
+char			*ft_convert_base(char *nbr, char *base_from, char *base_to);
+char			*ft_itoabase(int n, const char *base);
+void			ft_ctabdel(char **tab);
+void			ft_lstappend(t_list **lst, t_list *new);
+void			ft_lstdel_cnt(void *content, size_t content_size);
 
 #endif

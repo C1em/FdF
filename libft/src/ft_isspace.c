@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   close.c                                            :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: coremart <coremart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/05 05:35:10 by coremart          #+#    #+#             */
-/*   Updated: 2019/03/04 08:17:36 by coremart         ###   ########.fr       */
+/*   Created: 2019/06/10 01:09:54 by coremart          #+#    #+#             */
+/*   Updated: 2019/06/10 01:10:44 by coremart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
-int	finish(void *param)
+int		ft_isspace(const char c)
 {
-	(void)param;
-	while (1)
-		;
-	exit(0);
+	if (c == '\t' || c == '\n' || c == '\r' || c == '\v' || c == '\f'
+		|| c == ' ')
+		return (1);
 	return (0);
 }

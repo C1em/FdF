@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ft_ceil.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: coremart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/08 12:10:36 by coremart          #+#    #+#             */
-/*   Updated: 2018/11/16 12:46:32 by coremart         ###   ########.fr       */
+/*   Created: 2019/03/12 14:54:21 by coremart          #+#    #+#             */
+/*   Updated: 2019/03/12 14:56:23 by coremart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strcpy(char *dst, const char *src)
+int	ft_ceil(float nb)
 {
-	int i;
-
-	i = 0;
-	while (src[i])
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = '\0';
-	return (dst);
+	if ((float)(int)nb == nb)
+		return ((int)nb);
+	return ((int)nb + 1);
 }

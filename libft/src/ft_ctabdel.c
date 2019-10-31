@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_absolute.c                                      :+:      :+:    :+:   */
+/*   ft_ctabdel.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coremart <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tlamart <tlamart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/25 00:18:13 by coremart          #+#    #+#             */
-/*   Updated: 2019/03/04 00:58:55 by coremart         ###   ########.fr       */
+/*   Created: 2019/08/21 12:25:47 by tlamart           #+#    #+#             */
+/*   Updated: 2019/08/21 14:55:10 by tlamart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-float	ft_absolute(float nb)
+#include "libft.h"
+#include <stdlib.h>
+
+void	ft_ctabdel(char **tab)
 {
-	if (nb < 0)
-		return (-nb);
-	return (nb);
+	int		i;
+
+	i = 0;
+	while ((tab[i]))
+	{
+		free((tab[i]));
+		(tab[i]) = NULL;
+		i++;
+	}
+	free(tab);
 }

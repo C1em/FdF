@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: coremart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/10 16:47:00 by coremart          #+#    #+#             */
-/*   Updated: 2018/11/16 13:46:23 by coremart         ###   ########.fr       */
+/*   Created: 2018/11/09 15:16:55 by coremart          #+#    #+#             */
+/*   Updated: 2019/03/03 00:47:01 by coremart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <string.h>
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+void	ft_bzero(void *s, size_t n)
 {
-	if ((unsigned char*)src <= (unsigned char*)dst)
-		while (len--)
-			*((unsigned char*)dst + len) = *((unsigned char*)src + len);
-	else
-		ft_memcpy(dst, src, len);
-	return (dst);
+	while (n)
+	{
+		*(unsigned char*)s = 0;
+		s++;
+		n--;
+	}
 }
